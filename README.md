@@ -1,41 +1,41 @@
-# Vault-Ledger Core 🏦
+# Vault-Ledger Core
 
-A secure, distributed banking ledger API built with ACID compliance and high concurrency in mind.
+Vault-Ledger is a distributed banking ledger API designed for high-integrity financial transactions. The system ensures ACID compliance to maintain data consistency in high-concurrency environments.
 
-## 🚀 Overview
+## System Overview
 
-- **Problem Solved**: Addresses the challenge of data consistency in concurrent financial transactions, effectively preventing double-spending and race conditions.
-- **Impact**: Achieved sub-50ms latency for ledger updates through optimized database queries and Hibernate connection pooling.
-- **Compliance**: Strict adherence to ACID properties for all financial operations.
+- **Objective**: Development of a secure ledger capable of managing concurrent financial transactions without data corruption.
+- **Impact**: Optimized database interaction through Hibernate connection pooling, achieving sub-50ms latency for ledger updates.
+- **Compliance**: Strict adherence to ACID principles to prevent race conditions and double-spending.
 
-## 🛠 Tech Stack
+## Technical Stack
 
 - **Language**: Java 17
 - **Framework**: Spring Boot 3
 - **Security**: Spring Security (JWT, RBAC)
-- **Persistence**: PostgreSQL, Hibernate
-- **Containerization**: Docker
+- **Data Layer**: PostgreSQL, Hibernate
+- **Deployment**: Docker
 
-## 🔑 Key Features
+## Key Functionalities
 
-- **Stateless Authentication**: Robust JWT-based RBAC (Role-Based Access Control).
-- **Concurrency Control**: Robust handling of race conditions in financial transactions.
-- **Reliable Rollbacks**: Implementation of transactional integrity and rollback mechanisms.
-- **Optimized Performance**: Fine-tuned Hibernate configuration for high-throughput ledger operations.
+- **Stateless Authentication**: Secure Role-Based Access Control (RBAC) implemented via JWT.
+- **Concurrency Management**: Transaction isolation and locking strategies to prevent race conditions.
+- **Transactional Integrity**: Reliable rollback mechanisms to ensure ledger consistency.
+- **High Throughput**: Connection pool optimization for rapid state transitions.
 
-## 🏗 Setup
+## Installation and Execution
 
-1. **Database**:
+1. **Database Environment**:
    ```bash
    docker-compose up -d
    ```
-2. **Build & Run**:
+2. **Build and Run**:
    ```bash
    ./mvnw clean install
    ./mvnw spring-boot:run
    ```
 
-## 🧠 Challenges Overcome
+## Engineering Challenges
 
-- Implementing stateless authentication with Spring Security.
-- Designing reliable transaction rollback mechanisms for complex financial flows.
+- Designing stateless security architectures for sensitive financial data.
+- Implementing reliable transaction recovery and rollback protocols.
