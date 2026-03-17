@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: banking_core
+      POSTGRES_USER: ${DATABASE_USERNAME:-harshit}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-securepass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-harshit} -d banking_core"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/banking_core
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-harshit}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-securepass}
+      JWT_SECRET: ${JWT_SECRET:-dGhpcyBpcyBhIHNhbXBsZSBiYXNlNjQgZW5jb2RlZCBzZWNyZXQga2V5IGZvciBkZXY=}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+
+volumes:
+  pgdata:
